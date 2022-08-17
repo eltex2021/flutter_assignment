@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment/theme/app_texts.dart';
 
@@ -22,19 +21,22 @@ class _FindCardWidgetState extends State<FindCardWidget> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    return Card(
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(12)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-        child: Column(
-          children: [
-            textFormWidget(width),
-            buttonsWidget(),
-            dropDownWidget(),
-            smallDownWidget(),
-          ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      child: Card(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+          child: Column(
+            children: [
+              textFormWidget(width),
+              buttonsWidget(),
+              dropDownWidget(),
+              smallDownWidget(),
+            ],
+          ),
         ),
       ),
     );
@@ -48,12 +50,6 @@ class _FindCardWidgetState extends State<FindCardWidget> {
             print('клик');
           },
           child: const Icon(Icons.search),
-          // child: SvgPicture.asset(
-          //   AppIcons.searchSvg,
-          //   Icons.search,
-          //   color: AppColors.mainBlue,
-          //   width: 24,
-          // ),
         ),
         const SizedBox(
           width: 10,

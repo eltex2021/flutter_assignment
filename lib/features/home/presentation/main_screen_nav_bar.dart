@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_texts.dart';
 import '../../calls/calls_screen.dart';
-import '../../contacts/contacts_screen.dart';
+import '../../contacts/presentation/contacts_screen.dart';
 import '../../messages/messages_screen.dart';
 import '../domain/bottom_navigation_bloc.dart';
 import 'home_screen.dart';

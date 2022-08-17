@@ -35,4 +35,12 @@ abstract class AppTexts {
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
   );
+  static const countryText = TextStyle(
+    color: AppColors.mainBlack,
+    fontSize: 18,
+    letterSpacing: 0.3,
+    height: 1.2,
+    fontWeight: FontWeight.w800,
+    fontStyle: FontStyle.normal,
+  );
 }

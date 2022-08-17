@@ -85,20 +85,20 @@ class _FindCardWidgetState extends State<FindCardWidget> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Row(
-        children: const [
+        children: [
           CustomButton(
-            color: AppColors.mainBlue,
+            //color: AppColors.mainBlue,
             text: 'SMS',
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: CustomButton(
-              color: AppColors.pureBlue,
+              //color: AppColors.pureBlue,
               text: 'MMS',
             ),
           ),
           CustomButton(
-            color: AppColors.mainBlue,
+            //color: AppColors.mainBlue,
             text: 'Voice',
           ),
         ],

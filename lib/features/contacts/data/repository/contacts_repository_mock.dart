@@ -1,6 +1,6 @@
-import 'package:flutter_assignment/features/contacts/domain/contact.dart';
+import 'package:flutter_assignment/features/contacts/data/models/contact.dart';
 
-import '../domain/servises/contacts_repository.dart';
+import '../../domain/repository/contacts_repository.dart';
 
 class ContactsMockRepository implements ContactsRepository {
   @override

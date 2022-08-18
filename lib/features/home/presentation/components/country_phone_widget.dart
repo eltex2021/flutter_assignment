@@ -4,7 +4,7 @@ import 'package:flutter_assignment/theme/app_texts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../contacts/domain/bloc/contacts_bloc.dart';
-import '../../../contacts/domain/contact.dart';
+import '../../../contacts/data/models/contact.dart';
 
 class CountryPhoneWidget extends StatelessWidget {
   const CountryPhoneWidget(
@@ -24,7 +24,7 @@ class CountryPhoneWidget extends StatelessWidget {
             countryName: countryName,
             image: image,
           ),
-          PhoneNambersWidget(
+          PhoneNumbersWidget(
             countryName: countryName,
           ),
         ],
@@ -66,8 +66,8 @@ class CountryNameWidget extends StatelessWidget {
   }
 }
 
-class PhoneNambersWidget extends StatelessWidget {
-  const PhoneNambersWidget({
+class PhoneNumbersWidget extends StatelessWidget {
+  const PhoneNumbersWidget({
     Key? key,
     required this.countryName,
   }) : super(key: key);

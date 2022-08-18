@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Contact _$ContactFromJson(Map<String, dynamic> json) {
+  return _Contact.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Contact {
   String get name => throw _privateConstructorUsedError;
@@ -21,6 +25,7 @@ mixin _$Contact {
   String get region => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ContactCopyWith<Contact> get copyWith => throw _privateConstructorUsedError;
 }
@@ -115,13 +120,16 @@ class __$$_ContactCopyWithImpl<$Res> extends _$ContactCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Contact implements _Contact {
   const _$_Contact(
       {required this.name,
       required this.country,
       required this.region,
       required this.phone});
+
+  factory _$_Contact.fromJson(Map<String, dynamic> json) =>
+      _$$_ContactFromJson(json);
 
   @override
   final String name;
@@ -148,6 +156,7 @@ class _$_Contact implements _Contact {
             const DeepCollectionEquality().equals(other.phone, phone));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -160,6 +169,11 @@ class _$_Contact implements _Contact {
   @override
   _$$_ContactCopyWith<_$_Contact> get copyWith =>
       __$$_ContactCopyWithImpl<_$_Contact>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ContactToJson(this);
+  }
 }
 
 abstract class _Contact implements Contact {
@@ -168,6 +182,8 @@ abstract class _Contact implements Contact {
       required final String country,
       required final String region,
       required final String phone}) = _$_Contact;
+
+  factory _Contact.fromJson(Map<String, dynamic> json) = _$_Contact.fromJson;
 
   @override
   String get name;

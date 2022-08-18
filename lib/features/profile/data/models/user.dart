@@ -1,9 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../contacts/domain/contact.dart';
+import '../../../contacts/data/models/contact.dart';
 
 part 'user.freezed.dart';
-
+part 'user.g.dart';
 
 @freezed
 class User with _$User {
@@ -13,4 +13,7 @@ class User with _$User {
     required String photo,
     required List<Contact> contacts,
   }) = _User;
+
+  factory User.fromJson(Map<String, Object?> json)
+  => _$UserFromJson(json);
 }

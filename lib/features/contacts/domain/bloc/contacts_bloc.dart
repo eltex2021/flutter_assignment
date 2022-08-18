@@ -4,8 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 
-import '../../data/contacts_repository_mock.dart';
-import '../contact.dart';
+import '../../data/repository/contacts_repository_mock.dart';
+import '../../data/models/contact.dart';
 
 part 'contacts_bloc.freezed.dart';
 

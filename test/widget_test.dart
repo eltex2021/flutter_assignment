@@ -73,8 +73,7 @@ void main() {
       ], child: const MainScreen()),
     ));
 
-    //проверка цвет кнопок sms, mms, voice
-    // resolve для получения точного состояния MaterialState, иначем не работает
+      // resolve для получения точного состояния MaterialState, иначе не работает
 
     final colorButton =
         (tester.firstWidget(find.byType(OutlinedButton)) as OutlinedButton)

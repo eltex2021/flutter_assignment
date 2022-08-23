@@ -1,30 +1,91 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_assignment/features/contacts/domain/bloc/contacts_bloc.dart';
+import 'package:flutter_assignment/features/home/domain/bottom_navigation_bloc.dart';
+import 'package:flutter_assignment/features/home/presentation/components/country_phone_widget.dart';
+import 'package:flutter_assignment/features/home/presentation/main_screen_nav_bar.dart';
+import 'package:flutter_assignment/theme/app_colors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_assignment/main.dart';
-
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  int counter = 0;
+  setUp(() {
+    if (kDebugMode) {
+      print('Запуск тестирования');
+    }
+  });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  tearDown(() {
+    if (kDebugMode) {
+      print('Тест завершен');
+    }
+    counter++;
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  tearDownAll(() {
+    if (kDebugMode) {
+      print('Количество тестов $counter');
+    }
+  });
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  testWidgets('Проверка экрана Home', (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: MultiBlocProvider(providers: [
+        BlocProvider<BottomNavigationBloc>(
+          create: (context) => BottomNavigationBloc(),
+        ),
+        BlocProvider<ContactsBloc>(create: (context) => ContactsBloc()
+            //..add(const ContactsEvent.initial()),
+            ),
+      ], child: const MainScreen()),
+    ));
+
+    //проверка наличия текста в строке поиска
+    final textFinder = find.text('Country name');
+    expect(textFinder, findsOneWidget);
+
+    //проверка, что выведено на экран 3 кнопки
+    final customButton = find.byType(OutlinedButton);
+    expect(customButton, findsNWidgets(3));
+
+    //проверка наличия иконки в appBar
+    final icon = find.widgetWithIcon(AppBar, Icons.bar_chart);
+    expect(icon, findsOneWidget);
+
+    //проверка цвета в Material
+    final mainColor = tester.firstWidget(find.byType(Material)) as Material;
+    expect(mainColor.color, const Color(0xfffafafa));
+
+    //проверка количества групп телефонов по странам
+    final phoneNumbers = find.byType(CountryPhoneWidget);
+    expect(phoneNumbers, findsNWidgets(2));
+  });
+
+  testWidgets('Проверка цвета кнопок sms, mms, voice', (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: MultiBlocProvider(providers: [
+        BlocProvider<BottomNavigationBloc>(
+          create: (context) => BottomNavigationBloc(),
+        ),
+        BlocProvider<ContactsBloc>(create: (context) => ContactsBloc(),
+            ),
+      ], child: const MainScreen()),
+    ));
+
+    //проверка цвет кнопок sms, mms, voice
+    // resolve для получения точного состояния MaterialState, иначем не работает
+
+    final colorButton =
+        (tester.firstWidget(find.byType(OutlinedButton)) as OutlinedButton)
+            .style!
+            .backgroundColor;
+
+    expect(
+        colorButton!.resolve(<MaterialState>{}),
+        MaterialStateProperty.all(AppColors.pureBlue)
+            .resolve(<MaterialState>{}));
   });
 }
+
+/// Для запуска теста flutter test test/widget_test.dart

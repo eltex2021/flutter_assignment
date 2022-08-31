@@ -85,12 +85,13 @@ class _FindCardWidgetState extends State<FindCardWidget> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           CustomButton(
             text: 'SMS',
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
             child: CustomButton(
               text: 'MMS',
             ),
